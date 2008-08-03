@@ -1,9 +1,12 @@
-CheckboxSelect
+SexySelect
 ==============
 by: Brian Cardarella
 v 0.8.4 (beta)
 
 == VERSION HISTORY ==
+v0.9   --4th release
+	- Renamed plugin to Sexy-Select, no longer Checkbox-Select
+	  Moved to GitHub, no longer updated on GoogleCode
 v0.8.4 --3rd.75 release
 	- Changed Hash from {:name, :cat_id} to {:option, :value} to more reflect
 	  HTML select
@@ -24,7 +27,7 @@ V 0.6 -- 2nd release
 	  element
 	- Added :counter option for keeping a count of all selections in
 	  the checkbox select header.
-	- Changed the files so everything is 'checkbox_select' instead of
+	- Changed the files so everything is 'sexy_select' instead of
 	  being mixed with 'checkbox-select'
 	- Various bug fixes
 
@@ -43,11 +46,11 @@ Please feel free to comment by emailing me:
 Brian Cardarella <bcardarella@gmail.com>
 
 == LOCATION ==
-Codespace: http://code.google.com/p/checkbox-select/
-svn: svn checkout http://checkbox-select.googlecode.com/svn/trunk/ checkbox_select
+GitHub: http://github.com/bcardarella/sexy-select/
+clone URL: git://github.com/bcardarella/sexy-select.git
 
 == DEFINITION ==
-checkbox_select(object_name, method, collection, selected, options={})
+sexy_select(object_name, method, collection, selected, options={})
 Creates a selection box with checkboxes for each item... should be used to replace
 the usual select input element
 
@@ -55,33 +58,33 @@ the usual select input element
 After installing this plugin you must copy the javascript and
 stylesheet to the proper locations:
 
-cp ./my_project/vendor/plugin/checkbox-select/lib/checkbox_select.js \
+cp ./my_project/vendor/plugin/checkbox-select/lib/sexy_select.js \
 ./my_project/public/javascripts/
 
-cp ./my_project/vendor/plugin/checkbox-select/lib/checkbox_select.css \
+cp ./my_project/vendor/plugin/checkbox-select/lib/sexy_select.css \
 ./my_project/public/stylesheets/
 
 Now you must copy the downarrow image...
 
-mkdir ./my_project/public/images/checkbox_select \
-cp ./my_project/vendor/plugin/checkbox_select/lib/downarrow.png \
-./my_project/public/images/checkbox_select/
+mkdir ./my_project/public/images/sexy_select \
+cp ./my_project/vendor/plugin/sexy_select/lib/downarrow.png \
+./my_project/public/images/sexy_select/
 
 Once this is done you must include the javascript and stylesheet in
 your layout:
 
 ./my_project/app/views/layouts/my_layout.html.erb
 .....
-<%= stylesheet_link_tag "checkbox_select" %>
-<%= javascript_include_tag "prototype", "checkbox_select" %>
+<%= stylesheet_link_tag "sexy_select" %>
+<%= javascript_include_tag "prototype", "sexy_select" %>
 
 Note that the checkbox-select javascript file was included
 *after* the prototype javascript file. Prototype is a dependency
-of checkbox_select.
+of sexy_select.
 
 == PREPARE YOUR MODEL == 
 Now that everything is included you must serialize the model attribute
-that you will be using with the checkbox_select:
+that you will be using with the sexy_select:
 
 ./my_project/app/models/my_model.rb
 class MyModel < ActiveRecord::Base
@@ -93,23 +96,23 @@ Once all that is done you can now use the plugin. Here is an example:
 
 ./my_prject/app/views/my_models/edit.html.erb
 <% form_for @my_model do |f| %>
-   <%= f.checkbox_select :my_field, ["Choice 1", "Choice 2", "Choice 3"]  %>
+   <%= f.sexy_select :my_field, ["Choice 1", "Choice 2", "Choice 3"]  %>
 <% end %>
 
 or
 
 <form>
-   <%= checkbox_select :my_model, :my_field, %w{Cat Dog Mouse} %>
+   <%= sexy_select :my_model, :my_field, %w{Cat Dog Mouse} %>
 </form>
 
 == DEFINITION ==
 
-checkbox_select(object, method, choices, options={})
+sexy_select(object, method, choices, options={})
 
 object: string or symbol of the instance variable containing the model
 method: string or symbol of the instnace variable's method
 choices: collection of optins (see below)
-options: hash or customization of the checkbox_select element (see below)
+options: hash or customization of the sexy_select element (see below)
 
 = CHOICES =
 The collection (3rd parameter)
@@ -143,7 +146,7 @@ The last parameters takes a hash of the following symbols:
 	Array - [String, String] first element is the singular form of the noun, second element is the plural
 
 == Customizing ==
-I would recommend changing the checkbox_select.css file to customize the style. By default it is setup
+I would recommend changing the sexy_select.css file to customize the style. By default it is setup
 to look similar to my system: Ubuntu 7.10 w/ FireFox2
 
 Unfortunately the form elements are mostly styled by the theme of the user agent so there is no real way
