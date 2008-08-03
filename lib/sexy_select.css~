@@ -1,0 +1,57 @@
+.checkbox_select, .checkbox_select_top, .checkbox_select_multiple {
+	background-color: white;
+	border-left: 2px solid gray;
+	border-top: 2px solid gray;
+	border-bottom: 2px solid #CCC;
+	border-right: 2px solid #CCC;
+
+}
+
+.checkbox_select_top, .checkbox_select_multiple, .checkbox_select {
+	width: inherit;
+}
+
+.checkbox_select a, .checkbox_select_multiple a {
+	color: black !important;
+	font-weight: normal !important;
+}
+
+.checkbox_select {
+	height: 200px;
+	display: none;
+	position: absolute;
+	z-index: 999999;
+	text-align: left !important;
+}
+
+.checkbox_select_multiple {
+	height: 400px;
+	text-align: left !important;
+}
+
+.checkbox_list {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.checkbox_select .checkbox_list {
+	height: 185px;
+}
+
+.checkbox_select_multiple .checkbox_list {
+	height: 385px;
+}
+
+.checkbox_select_top {
+	cursor: pointer;
+	background-color: white;
+	background-image: url(/images/checkbox_select/downarrow.png);
+	background-position: 100% center;
+	background-repeat: no-repeat;
+	text-align: center;
+}
+
+/* For IE */
+.checkbox_select_wrapper {
+  text-align: left;
+}

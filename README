@@ -1,0 +1,153 @@
+CheckboxSelect
+==============
+by: Brian Cardarella
+v 0.8.4 (beta)
+
+== VERSION HISTORY ==
+v0.8.4 --3rd.75 release
+	- Changed Hash from {:name, :cat_id} to {:option, :value} to more reflect
+	  HTML select
+
+v0.8.2 --3rd.5 release
+	- Added the :noun option. Now the programmer can pass a noun for the
+	  method to use in the header when counting. A plural and singular
+	  form can be used instead in Hash form or it can be left nil and
+	  have the noun and pluralization be derived from the method name
+
+v 0.8 -- 3rd release
+	- Rewrote most of the plugin to work more like the select form helper
+	  now the method derives the choices from the object passed instead of
+	  needing a seperate selected object
+
+V 0.6 -- 2nd release
+	- Added :size option for setting the width of the checkbox select
+	  element
+	- Added :counter option for keeping a count of all selections in
+	  the checkbox select header.
+	- Changed the files so everything is 'checkbox_select' instead of
+	  being mixed with 'checkbox-select'
+	- Various bug fixes
+
+v 0.5 -- 1st release
+
+== FUTURE RELEASES ==
+- Write Tests
+- Streamline code?
+- Suggestions?
+- Maximum option for setting a limit on options selected
+- Tree branching for creating categories. Maybe include expanding
+  and collapsing of branches
+
+== COMMENTS == 
+Please feel free to comment by emailing me:
+Brian Cardarella <bcardarella@gmail.com>
+
+== LOCATION ==
+Codespace: http://code.google.com/p/checkbox-select/
+svn: svn checkout http://checkbox-select.googlecode.com/svn/trunk/ checkbox_select
+
+== DEFINITION ==
+checkbox_select(object_name, method, collection, selected, options={})
+Creates a selection box with checkboxes for each item... should be used to replace
+the usual select input element
+
+== SETUP ==
+After installing this plugin you must copy the javascript and
+stylesheet to the proper locations:
+
+cp ./my_project/vendor/plugin/checkbox-select/lib/checkbox_select.js \
+./my_project/public/javascripts/
+
+cp ./my_project/vendor/plugin/checkbox-select/lib/checkbox_select.css \
+./my_project/public/stylesheets/
+
+Now you must copy the downarrow image...
+
+mkdir ./my_project/public/images/checkbox_select \
+cp ./my_project/vendor/plugin/checkbox_select/lib/downarrow.png \
+./my_project/public/images/checkbox_select/
+
+Once this is done you must include the javascript and stylesheet in
+your layout:
+
+./my_project/app/views/layouts/my_layout.html.erb
+.....
+<%= stylesheet_link_tag "checkbox_select" %>
+<%= javascript_include_tag "prototype", "checkbox_select" %>
+
+Note that the checkbox-select javascript file was included
+*after* the prototype javascript file. Prototype is a dependency
+of checkbox_select.
+
+== PREPARE YOUR MODEL == 
+Now that everything is included you must serialize the model attribute
+that you will be using with the checkbox_select:
+
+./my_project/app/models/my_model.rb
+class MyModel < ActiveRecord::Base
+   serialize :my_field
+end
+
+== EXAMPLES ==
+Once all that is done you can now use the plugin. Here is an example:
+
+./my_prject/app/views/my_models/edit.html.erb
+<% form_for @my_model do |f| %>
+   <%= f.checkbox_select :my_field, ["Choice 1", "Choice 2", "Choice 3"]  %>
+<% end %>
+
+or
+
+<form>
+   <%= checkbox_select :my_model, :my_field, %w{Cat Dog Mouse} %>
+</form>
+
+== DEFINITION ==
+
+checkbox_select(object, method, choices, options={})
+
+object: string or symbol of the instance variable containing the model
+method: string or symbol of the instnace variable's method
+choices: collection of optins (see below)
+options: hash or customization of the checkbox_select element (see below)
+
+= CHOICES =
+The collection (3rd parameter)
+Array of Hashes must have the following format:
+[{:option => "Choice 1", :value => "1"}, {:option => "Choice 2", :value => "2"}]
+Array of Arrays:
+[["Choice 1", "1"],["Choice 2", "2"]]
+Array
+["Choice 1","Choice 2"]
+
+The cat_id/[1] is the value of the selected item that will be stored in the database and the name/[0] 
+is what will be displayed. In the case of a 1-dimensional Array the display name will match the value.
+
+= OPTIONS =
+The last parameters takes a hash of the following symbols:
+{:title, :multi, :disabled, :id, :size, :counter, :noun => (NilClass | String | Hash: {:singular => String, :plural => String} | Array: [String,String]) }
+
+:title defaults to "- Select -", set to change the element's header title
+:multi defaults to nil, set to true to create a non-dropdown list with a scrollbar (similar to select's multi)
+:disabled defaults to nil, set to true to disable all checkbox elements within
+:id defaults to a random number, set to a unique id of your choosing
+:size defaults to 250 (size in pixels), set to a number to change the width of the element
+:counter defaults to :none takes :none, :both and :only...
+	:none - the header element will not be changed when choices are made
+	:both - the header element will change when choices are made and changed back to the title when none are made
+	:only - the header element will change when choices are made, :title is ignored completely
+:noun can be NilClass, String, Hash or an Array.
+	NilClass - Will derive the noun from the method, will pluarlization via Rails Inflection
+	String - Will use this as the singular form, will pluralize via Rails Inflection
+	Hash - Takes two symbols {:singular => String, :plural => String)
+	Array - [String, String] first element is the singular form of the noun, second element is the plural
+
+== Customizing ==
+I would recommend changing the checkbox_select.css file to customize the style. By default it is setup
+to look similar to my system: Ubuntu 7.10 w/ FireFox2
+
+Unfortunately the form elements are mostly styled by the theme of the user agent so there is no real way
+to make them 100% fit into every browser. But, I believe the added user-friendlyness makes up the
+difference.
+
+

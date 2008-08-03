@@ -1,0 +1,5 @@
+# Include hook code here
+#require 'checkbox_select'
+require 'sexy_select'
+ActionView::Helpers::FormHelper.extend(SexySelectHelper)
+ActionView::Helpers::FormBuilder.send(SexySelectBuilder)

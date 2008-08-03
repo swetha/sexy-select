@@ -1,0 +1,57 @@
+.sexy_select, .sexy_select_top, .sexy_select_multiple {
+	background-color: white;
+	border-left: 2px solid gray;
+	border-top: 2px solid gray;
+	border-bottom: 2px solid #CCC;
+	border-right: 2px solid #CCC;
+
+}
+
+.sexy_select_top, .sexy_select_multiple, .sexy_select {
+	width: inherit;
+}
+
+.sexy_select a, .sexy_select_multiple a {
+	color: black !important;
+	font-weight: normal !important;
+}
+
+.sexy_select {
+	height: 200px;
+	display: none;
+	position: absolute;
+	z-index: 999999;
+	text-align: left !important;
+}
+
+.sexy_select_multiple {
+	height: 400px;
+	text-align: left !important;
+}
+
+.checkbox_list {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.sexy_select .checkbox_list {
+	height: 185px;
+}
+
+.sexy_select_multiple .checkbox_list {
+	height: 385px;
+}
+
+.sexy_select_top {
+	cursor: pointer;
+	background-color: white;
+	background-image: url(/images/sexy_select/downarrow.png);
+	background-position: 100% center;
+	background-repeat: no-repeat;
+	text-align: center;
+}
+
+/* For IE */
+.sexy_select_wrapper {
+  text-align: left;
+}
