@@ -1,3 +1,4 @@
+require 'fileutils'
 
 PLUGIN_WD = "sexy-select"
 
