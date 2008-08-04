@@ -87,7 +87,7 @@ end
 
 module SexySelectBuilder
     # Rebuild the FormBuilder methods
-      def sexy_select(method, choices, options = {})
+      def sexy_select(method, choices, options = {}, html_options = {})
         @template.sexy_select(@object_name, method, choices,  options.merge(:object => @object))
       end
 end
