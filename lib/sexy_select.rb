@@ -1,10 +1,6 @@
-#module ActionView
-#  module Helpers
-#    module FormHelper
-
 module SexySelectHelper
-      def sexy_select(object, method, choices, options = {})
-        counter = ((options[:counter].blank? or options[:multi] == true) ? "none" : options[:counter]).to_s
+      def sexy_select(object, method, choices, options = {}, html_options = {})
+        counter = ((options[:counter].blank? or html_options[:multiple] == true) ? "none" : options[:counter]).to_s
         unique_id = options[:id] || rand(10000)
         object, method, title = object.to_s.dup, method.to_s.dup, (options[:title] || "- Select -")
         id_head = "#{object}[#{method}]_#{unique_id}"
@@ -38,19 +34,19 @@ module SexySelectHelper
            "id='#{id_head}-#{select_value}' "+
            (selected.nil? ? "" : "#{selected.include?(select_value) ? 'checked=\'checked\'' : nil} ")+
            "value='#{(select_value)}' "+
-           "#{options[:disabled] == true ? "disabled='true'" : ''} "+
+           "#{html_options[:disabled] == true ? "disabled='true'" : ''} "+
            build_sexy_select_onclick("#{id_head}", select_value, counter, title) + ">"+
            build_sexy_select_link("#{id_head}", select_value, select_option, counter, title)]
         end
        
         #build_sexy_select
         wrapper = "<div id='#{id_head}' class='sexy_select_wrapper' "+
-		  "style='width:#{(options[:size].blank? ? '150' : options[:size].to_s)}px; padding: 0px 2px;'>\n"
+		  "style='width:#{(html_options[:width].blank? ? '150' : html_options[:width].to_s)}px; padding: 0px 2px;'>\n"
         clear_selection = link_to_function("Clear Selected", "$$('input[id^=#{object}[#{method}]]_#{unique_id}]').invoke('setDOMAttribute','checked','false');"+
                           "sexy_select_rewrite_title_with_count('#{id_head}', #{@nouns}, #{counter.to_s == "only" ? false : "'"+title+"'"}, 0)")+"<br/>\n"
         list = "<div class='checkbox_list'>\n"
         
-        if options[:multiple] == true
+        if html_options[:multiple] == true
           header = ""
           main = "<div id='#{id_head}-main' class='sexy_select_multiple'>\n"
         else

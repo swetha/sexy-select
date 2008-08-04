@@ -107,7 +107,7 @@ or
 
 == DEFINITION ==
 
-sexy_select(object, method, choices, options={})
+sexy_select(object, method, choices, options={}, html_options={})
 
 object: string or symbol of the instance variable containing the model
 method: string or symbol of the instnace variable's method
@@ -144,6 +144,12 @@ The last parameters takes a hash of the following symbols:
 	String - Will use this as the singular form, will pluralize via Rails Inflection
 	Hash - Takes two symbols {:singular => String, :plural => String)
 	Array - [String, String] first element is the singular form of the noun, second element is the plural
+
+== HTML_OPTIONS == 
+:multiple defaults to nil, set to true to create a non-dropdown list with a scrollbar (similar to select's multi)
+:disabled defaults to nil, set to true to disable all checkbox elements within
+:width defaults to 150px, use to set the width of the box
+
 
 == Customizing ==
 I would recommend changing the sexy_select.css file to customize the style. By default it is setup
