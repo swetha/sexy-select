@@ -28,7 +28,7 @@ V 0.6 -- 2nd release
 	- Added :counter option for keeping a count of all selections in
 	  the checkbox select header.
 	- Changed the files so everything is 'sexy_select' instead of
-	  being mixed with 'checkbox-select'
+	  being mixed with 'sexy-select'
 	- Various bug fixes
 
 v 0.5 -- 1st release
@@ -54,21 +54,21 @@ sexy_select(object_name, method, collection, selected, options={})
 Creates a selection box with checkboxes for each item... should be used to replace
 the usual select input element
 
-== SETUP ==
+== INSTALLATION ==
 After installing this plugin you must copy the javascript and
 stylesheet to the proper locations:
 
-cp ./my_project/vendor/plugin/checkbox-select/lib/sexy_select.js \
+cp ./my_project/vendor/plugin/sexy-select/lib/sexy_select.js \
 ./my_project/public/javascripts/
 
-cp ./my_project/vendor/plugin/checkbox-select/lib/sexy_select.css \
+cp ./my_project/vendor/plugin/sexy-select/lib/sexy_select.css \
 ./my_project/public/stylesheets/
 
 Now you must copy the downarrow image...
 
 mkdir ./my_project/public/images/sexy_select \
 cp ./my_project/vendor/plugin/sexy_select/lib/downarrow.png \
-./my_project/public/images/sexy_select/
+./my_project/public/images/
 
 Once this is done you must include the javascript and stylesheet in
 your layout:
@@ -78,9 +78,9 @@ your layout:
 <%= stylesheet_link_tag "sexy_select" %>
 <%= javascript_include_tag "prototype", "sexy_select" %>
 
-Note that the checkbox-select javascript file was included
+Note that the sexy-select javascript file was included
 *after* the prototype javascript file. Prototype is a dependency
-of sexy_select.
+of sexy-select.
 
 == PREPARE YOUR MODEL == 
 Now that everything is included you must serialize the model attribute
