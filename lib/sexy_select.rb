@@ -53,10 +53,8 @@ module SexySelectHelper
         when "none"
           ""
         when "both"
-#          "onclick=\"false; sexy_select_change_count_with_title('#{@id_head}', #{@nouns}, '#{title}');\""
           "false; sexy_select_change_count_with_title('#{@id_head}', #{@nouns}, '#{title}');"
         when "only"
-#          "onclick=\"false; sexy_select_change_count('#{@id_head}', #{@nouns});\""
           "false; sexy_select_change_count('#{@id_head}', #{@nouns});"
         end
       end
@@ -91,14 +89,7 @@ module SexySelectHelper
 
 	  content_tag(:input, nil, :type => "checkbox", :name => name, :id => "#{@id_head}_#{select_value}", :checked => (selected.nil? ? nil : "#{selected.include?(select_value) ? 'checked=\'checked\'' : nil} "),
 		      :value => select_value, :disabled => html_options[:disabled], :onclick => build_sexy_select_onclick(select_value, counter, title))+
-
-#          "<input type='checkbox' name='#{name}' "+
-#           "id='#{@id_head}_#{select_value}' "+
-#           (selected.nil? ? "" : "#{selected.include?(select_value) ? 'checked=\'checked\'' : nil} ")+
-#           "value='#{(select_value)}' "+
-#           "#{html_options[:disabled] == true ? "disabled='true'" : ''} "+
-#           build_sexy_select_onclick(select_value, counter, title) + ">"+
-           build_sexy_select_link(select_value, select_option, counter, title)
+          build_sexy_select_link(select_value, select_option, counter, title)
 	end
 	[result, selected]
       end
