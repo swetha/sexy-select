@@ -1,6 +1,7 @@
 require 'test/unit'
+require 'abstract_unit'
 
-class CheckboxSelectTest < Test::Unit::TestCase
+class CheckboxSelectTest < ActionView::TestCase
   # Replace this with your real tests.
   def test_this_plugin
     flunk

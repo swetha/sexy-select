@@ -11,9 +11,14 @@
 	width: inherit;
 }
 
-.sexy_select a, .sexy_select_multiple a {
+.sexy_select a, .sexy_select_multiple a, .sexy_select label, .sexy_select_multiple label {
 	color: black !important;
 	font-weight: normal !important;
+        text-decoration: underline;
+}
+
+.checkbox_list input[type="checkbox"] {
+  border: 2px inset threedface !important;
 }
 
 .sexy_select {
