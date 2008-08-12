@@ -7,7 +7,7 @@ module SexySelectHelper
         @id_head = "#{object}_#{method}_#{unique_id}"
         selected = options[:object].send(method) rescue self.instance_variable_get("@#{object}").send(method)
 	@nouns = determine_nouns(options[:noun], method)
-        checkbox_list, selected = build_choices("#{object}[#{method}][]", choices, selected, counter, title, html_options)
+        checkbox_list = build_choices("#{object}[#{method}][]", choices, selected, counter, title, html_options)
 
         #build_sexy_select
 	script = ""
@@ -87,12 +87,12 @@ module SexySelectHelper
               select_value = element
           end
 
-	  tag(:input, {:type => "checkbox", :name => name, :id => "#{@id_head}_#{select_value}", :checked => (selected.nil? ? nil : "#{selected.include?(select_value) ? 'checked=\'checked\'' : nil} "),
+	  tag(:input, {:type => "checkbox", :name => name, :id => "#{@id_head}_#{select_value}", :checked => (selected.nil? ? nil : (selected.include?(select_value) ? "checked='checked'" : nil) ),
 		      :value => select_value, :disabled => html_options[:disabled], :onclick => build_sexy_select_onclick(select_value, counter, title)})+
 #          build_sexy_select_link(select_value, select_option, counter, title)
           content_tag(:label, select_option, :for => "#{@id_head}_#{select_value}", :class => "sexy-select-label")
 	end
-	[result, selected]
+	result
       end
 
 end
