@@ -4,6 +4,10 @@ by: Brian Cardarella
 v 0.9 (beta)
 
 == VERSION HISTORY ==
+V0.9.5
+       --4.5 release
+	- Rewrote plugin to use Rails' tag generator instead of writing raw HTML
+	- Added IE7 specific stylesheet to help with some issues
 v0.9   --4th release
 	- Renamed plugin to Sexy-Select, no longer Checkbox-Select
 	  Moved to GitHub, no longer updated on GoogleCode
@@ -40,6 +44,7 @@ v 0.5 -- 1st release
 - Maximum option for setting a limit on options selected
 - Tree branching for creating categories. Maybe include expanding
   and collapsing of branches
+- Make 100% compatible with IE6 - IE8
 
 == COMMENTS == 
 Please feel free to comment by emailing me:
@@ -58,10 +63,13 @@ the usual select input element
 After installing this plugin you must copy the javascript and
 stylesheet to the proper locations:
 
-cp ./my_project/vendor/plugin/sexy-select/lib/sexy_select.js \
+cp ./my_project/vendor/plugins/sexy-select/lib/sexy_select.js \
 ./my_project/public/javascripts/
 
-cp ./my_project/vendor/plugin/sexy-select/lib/sexy_select.css \
+cp ./my_project/vendor/plugins/sexy-select/lib/sexy_select.css \
+./my_project/public/stylesheets/
+
+cp ./my_project/vendor/plugins/sexy-select/lib/sexy_select-ie7.css \
 ./my_project/public/stylesheets/
 
 Now you must copy the downarrow image...
@@ -77,10 +85,16 @@ your layout:
 .....
 <%= stylesheet_link_tag "sexy_select" %>
 <%= javascript_include_tag "prototype", "sexy_select" %>
+<! -- [if IE 7]>
+<%= stylesheet_link_tag 'sexy_select-ie7' %>
+<![endif] -->
 
 Note that the sexy-select javascript file was included
 *after* the prototype javascript file. Prototype is a dependency
 of sexy-select.
+Also make note of the IE7 conditional comment. This is necessary
+to apply the IE7 stylesheet. Otherwise the plugin's dimensions are
+off.
 
 == PREPARE YOUR MODEL == 
 Now that everything is included you must serialize the model attribute
