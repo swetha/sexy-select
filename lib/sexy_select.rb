@@ -8,7 +8,7 @@ module SexySelectHelper
         selected = options[:object].send(method) rescue self.instance_variable_get("@#{object}").send(method)
 	@nouns = determine_nouns(options[:noun], method)
         checkbox_list = build_choices("#{object}[#{method}][]", choices, selected, counter, title, html_options)
-
+        @empty_choice = tag(:input, {:type => "hidden", :name => "#{object}[#{method}][]", :id => "#{@id_head}_spacer", :value => ""})
         #build_sexy_select
 	script = ""
 	clear_selection(object, method, counter, title, unique_id) #cache the link...
@@ -33,7 +33,7 @@ module SexySelectHelper
       end
 
       def build_main(class_append, checkbox_list)
-	content_tag(:div, :id => "#{@id_head}-main", :class => "sexy_select#{class_append}" ) { content_tag(:div, :class => "checkbox_list") { checkbox_list.join("<br/>\n") } + clear_selection(nil, nil, nil, nil, nil) }
+	content_tag(:div, :id => "#{@id_head}-main", :class => "sexy_select#{class_append}" ) { content_tag(:div, :class => "checkbox_list") { @empty_choice + checkbox_list.join("<br/>\n") } + clear_selection(nil, nil, nil, nil, nil) }
       end
 
 
@@ -86,7 +86,6 @@ module SexySelectHelper
               select_option = element
               select_value = element
           end
-
 	  tag(:input, {:type => "checkbox", :name => name, :id => "#{@id_head}_#{select_value}", :checked => (selected.nil? ? nil : (selected.include?(select_value) ? "checked='checked'" : nil) ),
 		      :value => select_value, :disabled => html_options[:disabled], :onclick => build_sexy_select_onclick(select_value, counter, title)})+
 #          build_sexy_select_link(select_value, select_option, counter, title)
