@@ -1,0 +1,4 @@
+
+.sexy_select {
+  width: expression(this.parentNode.clientWidth - 8 + "px");
+}
